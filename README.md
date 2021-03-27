@@ -11,3 +11,5 @@ link do kursu
 https://drive.google.com/file/d/1Uy9Zng78hVXdGWNHCZXdtsLgLKmUbP4F/view
 
 Nie było nic do zrobienia, nadrobić i zainstalować typescript
+
+https://github.com/kfranek-pjatk-classrooms/biu-2021-11c-01-giedrys-michal
