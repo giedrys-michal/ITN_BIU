@@ -48,4 +48,7 @@ if merge conflicts:
 > git status
 > git remote rm repo1
 ```
+## Zjazd 4
+Wszystkie aplikacje muszą mieć stały nagłówek z nazwą aplikacji i menu do najważniejszych podstron, a także stałą stopkę z numerem albumu, imieniem i nazwiskiem autora projektu. Aplikacje mają być wypełnione przykładowymi treściami na początku działania, dane nie muszą być zapisywane i odczytywane z żadnych zewnętrznych aplikacji/usług, wystarczy trzymać je w pamięci operacyjnej. Do jednego tematu może być przypisanych kilku studentów, lecz nie więcej niż 3. Praca grupowa nad projektami nie jest dozwolona.  
+- E-dziekanat (strona główna z listą grup studenckich, strona z listą wszystkich studentów i przyciskiem dodawania studenta, strona informacji o studencie z informacjami o grupach, do których go przypisano i przedmiotów, do których przypisane są jego grupy, strona pojedynczej grupy z listą studentów i przyciskiem do okna-modala z możliwością dodania studenta do grupy, strona z listą przedmiotów, strona przedmiotu która wyświetla listę grup przypisanych do przedmiotu)
 
