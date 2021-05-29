@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from '../../models/student';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-details-main-view',
   templateUrl: './details-main-view.component.html',
-  styleUrls: ['./details-main-view.component.css']
+  styleUrls: ['./details-main-view.component.css'],
+  providers: [StudentService]
 })
 export class DetailsMainViewComponent implements OnInit {
 
-  constructor() { }
+  currentStudent: Student = { id: 0, name: "", lastName: "" }
 
-  ngOnInit(): void {
+  constructor(private studentService: StudentService) {
+    this.currentStudent = this.studentService.student;
   }
+
+  ngOnInit(): void {}
 
 }
