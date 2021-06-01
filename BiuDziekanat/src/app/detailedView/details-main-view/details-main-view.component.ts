@@ -13,7 +13,9 @@ export class DetailsMainViewComponent implements OnInit {
   currentStudent: Student = { id: 0, name: "", lastName: "" }
 
   constructor(private studentService: StudentService) {
-    this.currentStudent = this.studentService.student;
+    this.studentService.student.subscribe(result => {
+      this.currentStudent = result;
+    })
   }
 
   ngOnInit(): void {}

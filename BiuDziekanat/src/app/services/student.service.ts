@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+
 import { Student } from '../models/student';
 import { STUDENTS } from '../models/mock-students';
 
@@ -7,17 +9,20 @@ import { STUDENTS } from '../models/mock-students';
 })
 export class StudentService {
   private _students = STUDENTS;
+  private _initStudent = new BehaviorSubject<Student>({ id: 0, name: "Michał", lastName: "Giedryś" });
+
+  student = this._initStudent.asObservable();
 
   getStudents(): Student[] {
     return this._students;
   }
 
-  private _student: Student = { id: 0, name: "Michał", lastName: "Giedryś" };
-  public get student(): Student {
-    return this._student;
+  setStudent(student: Student): void {
+    this._initStudent.next(student);
   }
-  public set student(value: Student) {
-    this._student = value;
+
+  getStudent(): Student {
+    return this._initStudent.value;
   }
 
   constructor() {}
