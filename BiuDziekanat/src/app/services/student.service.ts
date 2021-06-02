@@ -8,8 +8,8 @@ import { STUDENTS } from '../models/mock-students';
   providedIn: 'root'
 })
 export class StudentService {
-  private _students = STUDENTS;
-  private _initStudent = new BehaviorSubject<Student>({ id: 0, name: "Michał", lastName: "Giedryś" });
+  private _students: Student[] = STUDENTS;
+  private _initStudent = new BehaviorSubject<Student>(this.getStudents()[0]);
 
   student = this._initStudent.asObservable();
 

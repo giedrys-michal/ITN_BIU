@@ -1,0 +1,12 @@
+.close {
+  border: 0;
+  background-Color: transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+}
+.close:hover {
+  opacity: 1;
+}

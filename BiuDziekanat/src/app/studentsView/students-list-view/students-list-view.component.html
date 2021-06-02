@@ -1,0 +1,21 @@
+<h1>Students list</h1>
+<div class="w-75 my-2">
+  <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(studentsModalTemplate)">Dodaj studenta</button>
+  <button *ngFor="let student of students" type="button" class="btn btn-secondary w-100 my-2">{{student.id}} - {{student.name}} {{student.lastName}}</button>
+</div>
+
+<ng-template #studentsModalTemplate>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+    <button type="button" class="close" (click)="modalRef.hide()" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    ...
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef.hide()" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</ng-template>
