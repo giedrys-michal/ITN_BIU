@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="position-relative my-2">
-  <input [(ngModel)]="studentSearch" (ngModelChange)="onSearchInput($event)" (blur)="onBlur($event)" (focus)="onFocus($event)" type="text" id="search" class="form-control suggestionItem" placeholder="ID or Last name" aria-label="Search for student" aria-describedby="button-search">
+  <input [(ngModel)]="studentSearch" (ngModelChange)="onSearchInput($event)" (blur)="onBlur($event)" (focus)="onFocus($event)" type="text" id="search" class="form-control suggestionItem" placeholder="ID or Last name" aria-label="Search for student">
   <div *ngIf="showSearchSuggestions" id="suggestionsList">
     <div class="position-absolute w-100" style="top: 100%">
       <div *ngIf="isIdFilterChecked == 'true'; then filterId else filterLastName" class="list-group"></div>
