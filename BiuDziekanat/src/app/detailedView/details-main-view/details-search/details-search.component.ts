@@ -15,8 +15,10 @@ export class DetailsSearchComponent implements OnInit {
   isIdFilterChecked: string = "true";
   showSearchSuggestions: boolean = false;
 
-  onStudentSelect(student: Student): void {
+  onStudentSelect(event: Event, student: Student): void {
     console.log(student);
+    let el = event.target as HTMLElement;
+    this.studentSearch = el.innerText;
     this.studentService.setStudent(student);
   }
 

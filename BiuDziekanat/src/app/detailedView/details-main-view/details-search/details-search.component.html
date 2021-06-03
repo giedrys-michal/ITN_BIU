@@ -15,10 +15,10 @@
     <div class="position-absolute w-100" style="top: 100%">
       <div *ngIf="isIdFilterChecked == 'true'; then filterId else filterLastName" class="list-group"></div>
       <ng-template #filterId>
-        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect(student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.id}}</button>
+        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect($event, student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.id}}</button>
       </ng-template>
       <ng-template #filterLastName>
-        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect(student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.lastName}}</button>
+        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect($event, student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.lastName}}</button>
       </ng-template>
     </div>
   </div>

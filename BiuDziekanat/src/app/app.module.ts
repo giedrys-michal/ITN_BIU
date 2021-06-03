@@ -60,7 +60,7 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // debuging purposes
+      { enableTracing: false } // 'true' outputs routes to console
     )
   ],
   providers: [],
