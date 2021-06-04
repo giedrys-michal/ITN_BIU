@@ -25,12 +25,12 @@ import { StudentDetailsViewComponent } from './studentsView/student-details-view
 import { StudentsListViewComponent } from './studentsView/students-list-view/students-list-view.component';
 
 const appRoutes: Routes = [
-  { path: 'mainview', component: MainViewComponent },
+  { path: 'studentinfo', component: MainViewComponent },
   { path: 'groups', component: GroupsMainViewComponent },
   { path: 'students', component: StudentsMainViewComponent },
   { path: 'courses', component: CoursesMainViewComponent },
-  { path: '',   redirectTo: '/mainview', pathMatch: 'full' },
-  { path: '**', component: DetailsMainViewComponent}
+  { path: '',   redirectTo: '/groups', pathMatch: 'full' },
+  { path: '**', component: GroupsMainViewComponent}
 ];
 
 @NgModule({

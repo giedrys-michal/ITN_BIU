@@ -13,6 +13,14 @@ export class StudentsListViewComponent implements OnInit {
   public modalRef: BsModalRef;
   students: Student[] = [];
 
+  newStudentProps = {
+    name: "",
+    lastName: "",
+    msgStyle: "",
+    msgText: "",
+    wasStudentAdditionAttempted: false,
+  }
+
   constructor(private modalService: BsModalService, private studentService: StudentService) {
     this.students = studentService.getStudents();
     this.modalRef = new BsModalRef();
@@ -20,6 +28,49 @@ export class StudentsListViewComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  hideModal() {
+    this.newStudentProps.name = "";
+    this.newStudentProps.lastName = "";
+    this.newStudentProps.wasStudentAdditionAttempted = false;
+    this.modalRef.hide();
+  }
+
+  onAddStudent(): void {
+    this.newStudentProps.wasStudentAdditionAttempted = true;
+    let name = this.newStudentProps.name;
+    let lastName = this.newStudentProps.lastName;
+    
+    if (this.isStudentLastNameCorrect(lastName)) {
+      this.addNewStudent(name, lastName);
+      this.newStudentProps.msgStyle = "text-success";
+      this.newStudentProps.msgText = "Student dodany poprawnie!";
+    } else {
+      this.newStudentProps.msgStyle = "text-danger";
+      this.newStudentProps.msgText = "Nazwisko zbyt krótkie...";
+    }
+  }
+
+  addNewStudent(name: string, lastName: string) {
+    let lastStudentId = this.students[this.students.length - 1].id;
+    let newStudent: Student = {
+      id: lastStudentId + 1,
+      name: name,
+      lastName: lastName,
+      groups: []
+    }
+    this.studentService.addStudent(newStudent);
+    console.log("Student added: "+ name + " " + lastName);
+  }
+
+  isStudentLastNameCorrect(lastName: string): boolean {
+    return (lastName.length > 1) ? true : false;
+  }
+
+  onListButtonClick(student: Student): void {
+    console.log("Clicked on: " + student.id);
+    this.studentService.setStudent(student);
   }
 
   ngOnInit(): void {

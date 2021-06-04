@@ -11,10 +11,15 @@ export class CourseService {
   private _courses: Course[] = COURSES;
   private _initCourse = new BehaviorSubject<Course>(this.getCourses()[0]);
 
-  course = this._initCourse.asObservable();
+  // course = this._initCourse.asObservable();
 
   getCourses() {
     return this._courses;
+  }
+
+  addCourse(course: Course): void {
+    this.setCourse(course);
+    this.getCourses().push(this.getCourse());
   }
 
   setCourse(course: Course): void {

@@ -1,28 +1,29 @@
 <h1>Lista studentów</h1>
 <div class="w-75 my-2">
   <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(studentsModalTemplate)">Dodaj studenta</button>
-  <button *ngFor="let student of students" type="button" class="btn btn-secondary w-100 my-2">{{student.id}} - {{student.name}} {{student.lastName}}</button>
+  <button *ngFor="let student of students" (click)="onListButtonClick(student)" type="button" class="btn btn-secondary w-100 my-2">{{student.id}} - {{student.name}} {{student.lastName}}</button>
 </div>
 
 <ng-template #studentsModalTemplate>
   <div class="modal-header">
     <h5 class="modal-title">Dodaj nowego studenta</h5>
-    <button type="button" class="close" (click)="modalRef.hide()" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" (click)="hideModal()" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="col-12 modal-body">
     <div class="row">
       <div class="col-6">
-        <input type="text" class="form-control my-3" placeholder="Imię" aria-label="New student name">
+        <input [(ngModel)]="newStudentProps.name" type="text" class="form-control my-3" placeholder="Imię" aria-label="New student name">
       </div>
       <div class="col-6">
-        <input type="text" class="form-control my-3" placeholder="Nazwisko" aria-label="New student last name">
+        <input [(ngModel)]="newStudentProps.lastName" type="text" class="form-control my-3" placeholder="Nazwisko" aria-label="New student last name">
       </div>
+      <p *ngIf="newStudentProps.wasStudentAdditionAttempted" class={{newStudentProps.msgStyle}}>{{newStudentProps.msgText}}</p>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modalRef.hide()" data-dismiss="modal">Anuluj</button>
-    <button type="button" class="btn btn-primary">Dodaj studenta</button>
+    <button type="button" class="btn btn-secondary" (click)="hideModal()" data-dismiss="modal">Anuluj</button>
+    <button type="button" class="btn btn-primary" (click)="onAddStudent()">Dodaj studenta</button>
   </div>
 </ng-template>

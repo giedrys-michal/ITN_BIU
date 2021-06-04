@@ -38,23 +38,18 @@ export class GroupsListViewComponent implements OnInit {
   onAddGroup(): void {
     this.newGroupProps.wasGroupAdditionAttempted = true;
     let name = this.newGroupProps.name;
-
     
     if (this.isGroupNameCorrect(name)) {
-      // group name ok
       if (this.isGroupOnList(name)) {
-        // group exists
         console.log("Group already exists, select different name!");
         this.newGroupProps.msgStyle = "text-danger";
         this.newGroupProps.msgText = "Grupa o takiej nazwie już istnieje, proszę podać inną...";
       } else {
-        // group ready to add
         this.addNewGroup(name);
         this.newGroupProps.msgStyle = "text-success";
         this.newGroupProps.msgText = "Grupa dodana poprawnie!";
       }
     } else {
-      // group name to short
       this.newGroupProps.msgStyle = "text-danger";
       this.newGroupProps.msgText = "Nazwa grupy zbyt krótka, proszę podać inną...";
     }

@@ -17,6 +17,11 @@ export class StudentService {
     return this._students;
   }
 
+  addStudent(student: Student): void {
+    this.setStudent(student);
+    this.getStudents().push(this.getStudent());
+  }
+
   setStudent(student: Student): void {
     this._initStudent.next(student);
   }

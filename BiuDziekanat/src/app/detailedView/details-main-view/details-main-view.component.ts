@@ -10,7 +10,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class DetailsMainViewComponent implements OnInit {
 
-  currentStudent: Student = { id: 0, name: "", lastName: "" }
+  currentStudent: Student = { id: 0, name: "", lastName: "", groups: [] }
 
   constructor(private studentService: StudentService) {
     this.studentService.student.subscribe(result => {
