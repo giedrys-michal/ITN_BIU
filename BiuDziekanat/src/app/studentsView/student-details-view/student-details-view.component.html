@@ -7,8 +7,20 @@
         <h2><span>{{currentStudent.name}} {{currentStudent.lastName}}</span></h2>
       </div>
     </div>
-    <div class="row flex-grow-1 py-2">
-      <p>Groups</p>
+    <div class="row flex-grow-1">
+      <div class="col-12">
+        <h3 class="my-3">Dodaj do grupy</h3>
+        <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="getStudentGroupDelta()">Delta</button>
+        <div>
+          <button *ngFor="let group of remainingGroups" type="button" class="btn btn-secondary w-100 my-2">{{group.name}}</button>
+        </div>
+      </div>
+      <div class="col-12">
+        <h3 class="my-3">Usuń z grupy</h3>
+        <div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

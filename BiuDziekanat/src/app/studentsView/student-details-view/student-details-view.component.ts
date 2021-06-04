@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Student } from 'src/app/models/student';
 import { StudentService } from 'src/app/services/student.service';
+import { Group } from 'src/app/models/group';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-student-details-view',
@@ -9,10 +12,32 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class StudentDetailsViewComponent implements OnInit {
   students: Student[] = [];
+  groups: Group[] = [];
   currentStudent: Student = this.students[0];
+  remainingGroups: Group[] = [];
 
-  constructor(private studentService: StudentService) {
-    this.students = studentService.getStudents();
+  getStudentGroupDelta(): void {
+    let initGroups = this.currentStudent.groups;
+    let groupsReminder: Group[] = [];
+
+    this.groups.forEach(g => {
+      let found = false;
+      initGroups.forEach(i => {
+        if (g.id == i.id) {
+          found = true;
+          return;
+        }
+      })
+      if (!found) groupsReminder.push(g);
+    })
+
+    this.remainingGroups = groupsReminder;
+    console.log(this.remainingGroups);
+  }
+
+  constructor(private studentService: StudentService, private groupService: GroupService) {
+    this.students = this.studentService.getStudents();
+    this.groups = this.groupService.getGroups();
     studentService.student.subscribe(result => {
       this.currentStudent = result;
     })
@@ -20,6 +45,7 @@ export class StudentDetailsViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.students = this.studentService.getStudents();
+    this.getStudentGroupDelta();
   }
 
 }
