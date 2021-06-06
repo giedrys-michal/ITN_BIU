@@ -5,6 +5,7 @@ import { Student } from 'src/app/models/student';
 import { STUDENTS } from 'src/app/models/mock-students';
 import { Group } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
+import { MainStateService } from './main-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -78,8 +79,8 @@ export class StudentService {
     this._studentGroups.next(remainder);
   }
 
-  constructor(private groupService: GroupService) {
-    this._groups = this.groupService.getGroups();
+  constructor(private mss: MainStateService) {
+    this._groups = this.mss.getGroups();
     this.setStudentAvailableGroups();
   }
 }

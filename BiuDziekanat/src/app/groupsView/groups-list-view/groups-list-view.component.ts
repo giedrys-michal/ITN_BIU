@@ -1,8 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { GroupService } from '../../services/group.service';
-import { Group } from '../../models/group';
+import { GroupService } from 'src/app/services/group.service';
+import { Group } from 'src/app/models/group';
+import { MainStateService } from 'src/app/services/main-state.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-groups-list-view',
@@ -18,11 +20,6 @@ export class GroupsListViewComponent implements OnInit {
     msgStyle: "",
     msgText: "",
     wasGroupAdditionAttempted: false,
-  }
-
-  constructor(private modalService: BsModalService, private groupService: GroupService) {
-    this.groups = groupService.getGroups();
-    this.modalRef = new BsModalRef();
   }
 
   openModal(template: TemplateRef<any>) {
@@ -62,6 +59,10 @@ export class GroupsListViewComponent implements OnInit {
       name: name
     }
     this.groupService.addGroup(newGroup);
+    this.mss.setCurrentGroup(newGroup);
+    let groupStudents = this.groupService.findGroupStudents();
+    this.groupService.setGroupStudents(groupStudents);
+    this.studentService.setStudentAvailableGroups();
     console.log("Group added: "+ name);
   }
 
@@ -78,8 +79,24 @@ export class GroupsListViewComponent implements OnInit {
     return isGroupOnList;
   }
 
+  onGroupClick(group: Group): void {
+    this.mss.setCurrentGroup(group);
+    let groupStudents = this.groupService.findGroupStudents();
+    this.groupService.setGroupStudents(groupStudents);
+  }
+
+  constructor(
+    private modalService: BsModalService,
+    private mss: MainStateService,
+    private groupService: GroupService,
+    private studentService: StudentService
+  ) {
+    this.groups = mss.getGroups();
+    this.modalRef = new BsModalRef();
+  }
+
   ngOnInit(): void {
-    this.groups = this.groupService.getGroups();
+    this.groups = this.mss.getGroups();
   }
 
 }
