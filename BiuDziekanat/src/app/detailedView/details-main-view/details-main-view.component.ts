@@ -13,7 +13,7 @@ export class DetailsMainViewComponent implements OnInit {
   currentStudent: Student = { id: 0, name: "", lastName: "", groups: [] }
 
   constructor(private studentService: StudentService) {
-    this.studentService.student.subscribe(result => {
+    this.studentService.currentStudent.subscribe(result => {
       this.currentStudent = result;
     })
   }

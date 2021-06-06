@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { StudentService } from '../../services/student.service';
-import { Student } from '../../models/student';
+import { StudentService } from 'src/app/services/student.service';
+import { Student } from 'src/app/models/student';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-students-list-view',
@@ -21,9 +22,11 @@ export class StudentsListViewComponent implements OnInit {
     wasStudentAdditionAttempted: false,
   }
 
-  constructor(private modalService: BsModalService, private studentService: StudentService) {
-    this.students = studentService.getStudents();
+  constructor(private modalService: BsModalService, private studentService: StudentService, private groupService: GroupService) {
     this.modalRef = new BsModalRef();
+    this.studentService.students.subscribe(result => {
+      this.students = result;
+    });
   }
 
   openModal(template: TemplateRef<any>) {
@@ -71,6 +74,7 @@ export class StudentsListViewComponent implements OnInit {
   onListButtonClick(student: Student): void {
     console.log("Clicked on: " + student.id);
     this.studentService.setStudent(student);
+    this.studentService.setStudentAvailableGroups();
   }
 
   ngOnInit(): void {

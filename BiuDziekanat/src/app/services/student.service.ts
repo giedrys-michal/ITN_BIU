@@ -1,34 +1,85 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
-import { Student } from '../models/student';
-import { STUDENTS } from '../models/mock-students';
+import { Student } from 'src/app/models/student';
+import { STUDENTS } from 'src/app/models/mock-students';
+import { Group } from 'src/app/models/group';
+import { GroupService } from 'src/app/services/group.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  private _students: Student[] = STUDENTS;
-  private _initStudent = new BehaviorSubject<Student>(this.getStudents()[0]);
+  // GROUPS
+  private _groups: Group[] = [];
 
-  student = this._initStudent.asObservable();
+  public get groups(): Group[] {
+    return this._groups;
+  }
+
+  // STUDENTS
+  private _students = new BehaviorSubject<Array<Student>>(STUDENTS);
+  students = this._students.asObservable();
 
   getStudents(): Student[] {
-    return this._students;
+    return this._students.value;
+  }
+  setStudents(students: Student[]): void {
+    this._students.next(students);
+  }
+
+  // STUDENT
+  private _currentStudent = new BehaviorSubject<Student>(this.getStudents()[0]);
+  currentStudent = this._currentStudent.asObservable();
+
+  getStudent(): Student {
+    return this._currentStudent.value;
+  }
+
+  setStudent(student: Student): void {
+    this._currentStudent.next(student);
   }
 
   addStudent(student: Student): void {
     this.setStudent(student);
     this.getStudents().push(this.getStudent());
+    this.setStudentAvailableGroups();
   }
 
-  setStudent(student: Student): void {
-    this._initStudent.next(student);
+  // STUDENT GROUPS
+  private _studentGroups = new BehaviorSubject<Array<Group>>(this.getStudents()[0].groups);
+  studentGroups = this._studentGroups.asObservable();
+
+  getStudentGroups(): Group[] {
+    return this._currentStudent.value.groups;
   }
 
-  getStudent(): Student {
-    return this._initStudent.value;
+  setStudentGroups(groups: Group[]): void {
+    this._currentStudent.value.groups = groups;
   }
 
-  constructor() {}
+  getStudentAvailableGroups(): Array<Group> {
+    return this._studentGroups.value;
+  }
+
+  setStudentAvailableGroups(): void {
+    let remainder: Group[] = [];
+
+    this.groups.forEach(g => {
+      let found = false;
+      this.getStudentGroups().forEach(sg => {
+        if (g.id == sg.id) {
+          found = true;
+          return;
+        }
+      })
+      if (!found) remainder.push(g);
+    });
+    this._studentGroups.next(remainder);
+  }
+
+  constructor(private groupService: GroupService) {
+    this._groups = this.groupService.getGroups();
+    this.setStudentAvailableGroups();
+  }
 }

@@ -1,7 +1,7 @@
 <h1>Lista studentów</h1>
 <div class="w-75 my-2">
   <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(studentsModalTemplate)">Dodaj studenta</button>
-  <button *ngFor="let student of students" (click)="onListButtonClick(student)" type="button" class="btn btn-secondary w-100 my-2">{{student.id}} - {{student.name}} {{student.lastName}}</button>
+  <button *ngFor="let student of students" (click)="onListButtonClick(student)" type="button" class="btn btn-warning w-100 my-2">{{student.id}} - {{student.name}} {{student.lastName}}</button>
 </div>
 
 <ng-template #studentsModalTemplate>

@@ -16,36 +16,33 @@ export class StudentDetailsViewComponent implements OnInit {
   currentStudent: Student = this.students[0];
   remainingGroups: Group[] = [];
 
-  getStudentGroupDelta(): void {
-    let initGroups = this.currentStudent.groups;
-    let groupsReminder: Group[] = [];
+  onAddToGroup(group: Group): void {
+    this.studentService.getStudentGroups().push(group);
+    this.studentService.setStudentAvailableGroups();
+  }
 
-    this.groups.forEach(g => {
-      let found = false;
-      initGroups.forEach(i => {
-        if (g.id == i.id) {
-          found = true;
-          return;
-        }
-      })
-      if (!found) groupsReminder.push(g);
-    })
-
-    this.remainingGroups = groupsReminder;
-    console.log(this.remainingGroups);
+  onRemoveFromGroup(group: Group): void {
+    let groups = this.studentService.getStudentGroups();
+    groups.splice(groups.indexOf(group), 1);
+    this.studentService.setStudentGroups(groups);
+    this.studentService.setStudentAvailableGroups();
   }
 
   constructor(private studentService: StudentService, private groupService: GroupService) {
-    this.students = this.studentService.getStudents();
+    this.studentService.students.subscribe(result => {
+      this.students = result;
+    });
     this.groups = this.groupService.getGroups();
-    studentService.student.subscribe(result => {
+    this.studentService.currentStudent.subscribe(result => {
       this.currentStudent = result;
-    })
+    });
+    this.studentService.studentGroups.subscribe(result => {
+      this.remainingGroups = result;
+    });
   }
 
   ngOnInit(): void {
     this.students = this.studentService.getStudents();
-    this.getStudentGroupDelta();
   }
 
 }
