@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 import { Group } from 'src/app/models/group';
 import { Student } from 'src/app/models/student';
 import { GroupService } from 'src/app/services/group.service';
@@ -10,6 +12,7 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./group-details-view.component.css']
 })
 export class GroupDetailsViewComponent implements OnInit {
+  public modalRef: BsModalRef;
   // STUDENTS
   private _students: Student[] = [];
 
@@ -42,7 +45,24 @@ export class GroupDetailsViewComponent implements OnInit {
     return this._groupStudents;
   }
 
-  constructor(private groupService: GroupService, private studentService: StudentService) {
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  hideModal(): void {
+    this.modalRef.hide();
+  }
+
+  onAddStudent(): void {
+    
+  }
+
+  constructor(
+    private modalService: BsModalService,
+    private groupService: GroupService,
+    private studentService: StudentService
+  ) {
+    this.modalRef = new BsModalRef();
     this.groupService.currentGroup.subscribe(result => {
       this._currentGroup = result;
     });

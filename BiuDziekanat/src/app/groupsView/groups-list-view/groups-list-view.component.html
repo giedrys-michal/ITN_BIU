@@ -1,10 +1,10 @@
 <h1>Lista grup</h1>
 <div class="w-50 my-2">
-  <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(groupModalTemplate)">Dodaj grupę</button>
+  <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(addGroupModalTemplate)">Dodaj grupę</button>
   <button *ngFor="let group of groups" type="button" class="btn btn-secondary w-100 my-2" (click)="onGroupClick(group)">{{group.name}}</button>
 </div>
 
-<ng-template #groupModalTemplate>
+<ng-template #addGroupModalTemplate>
   <div class="modal-header">
     <h5 class="modal-title">Dodaj nową grupę</h5>
     <button type="button" class="close" (click)="hideModal()" data-dismiss="modal" aria-label="Close">
