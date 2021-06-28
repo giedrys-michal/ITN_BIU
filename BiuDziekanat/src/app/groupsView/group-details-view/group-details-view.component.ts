@@ -13,11 +13,33 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class GroupDetailsViewComponent implements OnInit {
   public modalRef: BsModalRef;
+  
   // STUDENTS
   private _students: Student[] = [];
 
   getStudents(): Student[] {
     return this._students;
+  }
+
+  // AVAILABLE STUDENTS
+  private _availableStudents: Student[] = [];
+
+  getAvailableStudents(): Student[] {
+    return this._availableStudents;
+  }
+
+  updateAvailableStudents(): void {
+    console.log("GroupDetails-updateAvailableStudents");
+    let availableStudents = this.getStudents().slice();
+    let groupStudents = this.getGroupStudents().slice();
+
+    if (groupStudents.length > 0) {
+      groupStudents.forEach(student => {
+        availableStudents.splice(availableStudents.indexOf(student), 1);
+      });
+    }
+
+    this._availableStudents = availableStudents;
   }
 
   // GROUPS
@@ -45,6 +67,7 @@ export class GroupDetailsViewComponent implements OnInit {
     return this._groupStudents;
   }
 
+  // MODAL METHODS
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
   }
@@ -77,6 +100,6 @@ export class GroupDetailsViewComponent implements OnInit {
   ngOnInit(): void {
     this._groups = this.groupService.getGroups();
     this.setGroupStudents(this.groupService.findGroupStudents());
+    this.updateAvailableStudents();
   }
-
 }
