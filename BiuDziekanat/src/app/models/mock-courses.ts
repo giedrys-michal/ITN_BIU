@@ -1,15 +1,19 @@
 import { Course } from '../models/course';
 
-export const COURSES: Course[] = [
-  { id: 0, name: "TAU-1"},
-  { id: 1, name: "BIU-1"},
-  { id: 2, name: "BIU-2"},
-  { id: 3, name: "BIU-3"},
-  { id: 4, name: "PAMO-1"},
-  { id: 5, name: "PAMO-2"},
-  { id: 6, name: "DOT-1"},
-  { id: 7, name: "DOT-2"},
-  { id: 8, name: "DOT-3"},
-  { id: 9, name: "SAI-1"},
-  { id: 10, name: "SAI-2"},
+const COURSENAMES: string[] = [
+  "GRK-1","GRK-2","JAZ-1","JAZ-2","PAMO-1","PAMO-2","SAD-1","SAD-2","TAU-1","TAU-2","MAS-1","MAS-2","ANG-1","ANG-2","ANG-3","ANG-4","ANG-5","ANG-6",
+  "HKJ-1","HKJ-2","HKJ-3","HKJ-4","HIS-1","HIS-2","HIS-3","HIS-4","HIS-5","HIS-6","BIU-1","BIU-2","BIU-3","BIU-4","DOT-1","DOT-2","MAD-1","MAD-2",
+  "FIZ-1","FIZ-2","FIZ-3","FIZ-4","RBD-1","RBD-2","RBD-3","RBD-4"
 ];
+
+let generateMockCourses = (names: string[]) => {
+  let result: Course[] = [];
+
+  for (let i = 0; i < names.length; i++) {
+    result.push({ id: i, name: names[i] });
+  }
+  return result;
+} 
+
+export const COURSES: Course[] = generateMockCourses(COURSENAMES);
+
