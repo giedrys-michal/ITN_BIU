@@ -26,9 +26,6 @@
         <button *ngFor="let student of getAvailableStudents(studentFilter)" type="button" class="btn btn-warning w-50 m-2" >{{student.id}} - {{student.lastName}}</button>
       </div>            
     </div>
-    <!-- <input [(ngModel)]="newGroupProps.name" type="text" class="form-control my-3" placeholder="Nazwa grupy" aria-label="New group name"> -->
-    <!-- <p *ngIf="newGroupProps.wasGroupAdditionAttempted" class={{newGroupProps.msgStyle}}>{{newGroupProps.msgText}}</p> -->
-    <!-- <button *ngFor="let student of getAvailableStudents()" type="button" class="btn btn-warning m-2" >{{student.id}} - {{student.lastName}}</button> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="hideModal()" data-dismiss="modal">Anuluj</button>

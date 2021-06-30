@@ -18,14 +18,27 @@ export class StudentDetailsViewComponent implements OnInit {
 
   onAddToGroup(group: Group): void {
     let allGroups = this.studentService.getStudentGroups();
+    let newId = group.id;
 
-    for (let i = 0; i < allGroups.length; i++) {
-      if (allGroups[i].id > group.id) {
-        allGroups.splice(i, 0, group);
-        break;
+    if (allGroups.length > 0) {
+
+      for (let i = 0; i < allGroups.length; i++) {
+        let currentId = allGroups[i].id;
+
+        if (newId < currentId) {
+          allGroups.splice(i, 0, group);
+          break;
+        } else if (i < allGroups.length - 1) {
+          continue;
+        } else {
+          allGroups.splice(i + 1, 0, group);
+          break;
+        }
       }
+      
+    } else {
+      this.studentService.getStudentGroups().push(group);
     }
-
     this.studentService.setStudentAvailableGroups();
   }
 
