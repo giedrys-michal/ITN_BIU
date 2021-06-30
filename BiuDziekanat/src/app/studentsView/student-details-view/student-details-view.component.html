@@ -8,15 +8,15 @@
       </div>
     </div>
     <div class="row h-100">
-      <div class="col-12 h-50">
+      <div class="col-12 mh-50">
         <h3 class="my-3">Dodaj do grupy</h3>
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row flex-wrap">
           <button *ngFor="let group of remainingGroups" (click)="onAddToGroup(group)" type="button" class="btn btn-secondary m-2">{{group.name}}</button>
         </div>
       </div>
-      <div class="col-12 h-50">
+      <div class="col-12 mh-50">
         <h3 class="my-3">Usuń z grupy</h3>
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row flex-wrap">
           <button *ngFor="let group of currentStudent.groups" (click)="onRemoveFromGroup(group)" type="button" class="btn btn-secondary m-2">{{group.name}}</button>
         </div>
       </div>
