@@ -73,6 +73,14 @@ let generateGroups = (groups: Group[]) => {
     result.push(groups[randomGroupIndex]);
   }
 
+  result.sort( function(a, b) { return a.id - b.id; } );
+
+  for (let i = 1; i < result.length; i++) {
+    if (result[i-1] == result[i]) {
+      result.splice(i, 1);
+    }
+  }
+
   return result;
 }
 
