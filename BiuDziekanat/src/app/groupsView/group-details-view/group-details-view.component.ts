@@ -24,7 +24,10 @@ export class GroupDetailsViewComponent implements OnInit {
   // AVAILABLE STUDENTS
   private _availableStudents: Student[] = [];
 
-  getAvailableStudents(): Student[] {
+  getAvailableStudents(filter: string): Student[] {
+    if (filter != "") {
+      return this._availableStudents.filter((s) => s.lastName.toLowerCase().startsWith(filter.toLowerCase()));
+    }
     return this._availableStudents;
   }
 
@@ -68,6 +71,8 @@ export class GroupDetailsViewComponent implements OnInit {
   }
 
   // MODAL METHODS
+  public studentFilter: string = "";
+
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
   }

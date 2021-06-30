@@ -17,13 +17,20 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" >
+    <div class="col-sm">
+      <div class="">
+        <input [(ngModel)]="studentFilter" type="text" class="form-control my-3" placeholder="filtruj" aria-label="Filter">
+      </div>
+      <div class="d-flex flex-column align-items-center" style="overflow-y: scroll; height: 50vh;">
+        <button *ngFor="let student of getAvailableStudents(studentFilter)" type="button" class="btn btn-warning w-50 m-2" >{{student.id}} - {{student.lastName}}</button>
+      </div>            
+    </div>
     <!-- <input [(ngModel)]="newGroupProps.name" type="text" class="form-control my-3" placeholder="Nazwa grupy" aria-label="New group name"> -->
     <!-- <p *ngIf="newGroupProps.wasGroupAdditionAttempted" class={{newGroupProps.msgStyle}}>{{newGroupProps.msgText}}</p> -->
-    <button *ngFor="let student of getAvailableStudents()" type="button" class="btn btn-warning m-2" >{{student.lastName}}</button>
+    <!-- <button *ngFor="let student of getAvailableStudents()" type="button" class="btn btn-warning m-2" >{{student.id}} - {{student.lastName}}</button> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="hideModal()" data-dismiss="modal">Anuluj</button>
-    <button type="button" class="btn btn-primary" (click)="onAddStudent()">Dodaj do grupy</button>
   </div>
 </ng-template>
