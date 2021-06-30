@@ -56,6 +56,7 @@ export class StudentService {
   }
 
   setStudentGroups(groups: Group[]): void {
+    groups.sort((a, b) => a.id - b.id);
     this._currentStudent.value.groups = groups;
   }
 
@@ -77,7 +78,7 @@ export class StudentService {
       if (!found) remainder.push(g);
     });
     remainder.sort((a, b) => a.id - b.id);
-    
+
     this._studentGroups.next(remainder);
   }
 

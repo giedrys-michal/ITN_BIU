@@ -17,13 +17,22 @@ export class StudentDetailsViewComponent implements OnInit {
   remainingGroups: Group[] = [];
 
   onAddToGroup(group: Group): void {
-    this.studentService.getStudentGroups().push(group);
+    let allGroups = this.studentService.getStudentGroups();
+
+    for (let i = 0; i < allGroups.length; i++) {
+      if (allGroups[i].id > group.id) {
+        allGroups.splice(i, 0, group);
+        break;
+      }
+    }
+
     this.studentService.setStudentAvailableGroups();
   }
 
   onRemoveFromGroup(group: Group): void {
     let groups = this.studentService.getStudentGroups();
     groups.splice(groups.indexOf(group), 1);
+    groups.sort((a, b) => a.id - b.id);
     this.studentService.setStudentGroups(groups);
     this.studentService.setStudentAvailableGroups();
   }
