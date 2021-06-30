@@ -1,13 +1,11 @@
 <div class="col-sm h-100">
   <div class="d-flex flex-column text-center h-100">
-    <div class="">
-      <h1 class="">Lista grup</h1>
-      <button type="button" class="btn btn-success w-50 mt-2 mb-4" (click)="openModal(addGroupModalTemplate)">Dodaj grupę</button>
+    <div style="margin-right: 17px;">
+      <h1>Lista grup</h1>
+      <button type="button" class="btn btn-success w-75 mt-2 mb-4" (click)="openModal(addGroupModalTemplate)">Dodaj grupę</button>
     </div>
-    <div class="d-flex flex-grow-1 justify-content-center" style="overflow-y: scroll;">
-      <div class="w-50 my-2">
-        <button *ngFor="let group of groups" type="button" class="btn btn-secondary w-100 my-2" (click)="onGroupClick(group)">{{group.name}}</button>
-      </div>
+    <div class="d-flex flex-column align-items-center" style="overflow-y: scroll;">
+      <button *ngFor="let group of groups" type="button" class="btn btn-secondary w-75 my-2" (click)="onGroupClick(group)">{{group.name}}</button>
     </div>
   </div>
 </div>
