@@ -8,6 +8,7 @@ const COURSENAMES: string[] = [
 
 let generateMockCourses = (names: string[]) => {
   let result: Course[] = [];
+  names.sort();
 
   for (let i = 0; i < names.length; i++) {
     result.push({ id: i, name: names[i] });
@@ -16,4 +17,3 @@ let generateMockCourses = (names: string[]) => {
 } 
 
 export const COURSES: Course[] = generateMockCourses(COURSENAMES);
-

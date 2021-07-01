@@ -54,15 +54,16 @@ export class GroupsListViewComponent implements OnInit {
 
   addNewGroup(name: string) {
     let lastGroupId = this.groups[this.groups.length - 1].id;
-    let newGroup: Group = {
-      id: lastGroupId + 1,
-      name: name
-    }
+    let newGroup: Group = { id: lastGroupId + 1, name: name, courses: [] }
+
     this.groupService.addGroup(newGroup);
     this.mss.setCurrentGroup(newGroup);
+
     let groupStudents = this.groupService.findGroupStudents();
+
     this.groupService.setGroupStudents(groupStudents);
     this.studentService.setStudentAvailableGroups();
+    
     console.log("Group added: "+ name);
   }
 
