@@ -55,7 +55,7 @@ export class GroupDetailsViewComponent implements OnInit {
   // GROUP
   private _currentGroup: Group = this._groups[0];
 
-  getGroup(): Group {
+  getCurrentGroup(): Group {
     return this._currentGroup;
   }
 
@@ -81,8 +81,21 @@ export class GroupDetailsViewComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  onAddStudent(): void {
-    
+  onAddStudent(studentToAdd: Student): void {
+    let studentGroups = studentToAdd.groups;
+    let currentGroup = this.getCurrentGroup();
+
+    console.log(studentGroups);
+
+    if (studentGroups.indexOf(currentGroup) == -1) {
+      console.log("Group not found, adding");
+      studentGroups.push(currentGroup);
+    } else {
+      console.log("Group found");
+    }
+    console.log(studentGroups);
+    this.setGroupStudents(this.groupService.findGroupStudents());
+    this.updateAvailableStudents();
   }
 
   constructor(

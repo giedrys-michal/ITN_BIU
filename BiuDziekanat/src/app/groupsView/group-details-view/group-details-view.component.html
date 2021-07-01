@@ -1,5 +1,5 @@
 <div class="col-12 d-flex justify-content-center">
-  <h1>{{getGroup().name}}</h1>
+  <h1>{{getCurrentGroup().name}}</h1>
 </div>
 <div class="col-12 d-flex align-items-center">
   <h4 class="d-inline-block my-2" style="line-height: 1;">Dodaj studenta</h4>
@@ -7,12 +7,12 @@
 </div>
 <div class="col-12">
   <h2 class="w-100 my-3">Studenci:</h2>
-  <button *ngFor="let student of getGroupStudents()" type="button" class="btn btn-warning m-2" >{{student.lastName}}</button>
+  <button *ngFor="let student of getGroupStudents()" type="button" class="btn btn-warning m-2" >{{student.id}}<br>{{student.name}} {{student.lastName}}</button>
 </div>
 
 <ng-template #addStudentModalTemplate>
   <div class="modal-header">
-    <h5 class="modal-title">Dodaj studenta do grupy -- {{getGroup().name}} --</h5>
+    <h5 class="modal-title">Dodaj studenta do grupy -- {{getCurrentGroup().name}} --</h5>
     <button type="button" class="close" (click)="hideModal()" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -23,7 +23,7 @@
         <input [(ngModel)]="studentFilter" type="text" class="form-control my-3" placeholder="filtruj" aria-label="Filter">
       </div>
       <div class="d-flex flex-column align-items-center" style="overflow-y: scroll; height: 50vh;">
-        <button *ngFor="let student of getAvailableStudents(studentFilter)" type="button" class="btn btn-warning w-50 m-2" >{{student.id}} - {{student.lastName}}</button>
+        <button *ngFor="let student of getAvailableStudents(studentFilter)" type="button" class="btn btn-warning w-75 m-2" (click)="onAddStudent(student)">{{student.id}} - {{student.name}} {{student.lastName}}</button>
       </div>            
     </div>
   </div>
