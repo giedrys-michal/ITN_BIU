@@ -1,7 +1,13 @@
-<h1>Lista przedmiotów</h1>
-<div class="w-50 my-2">
-  <button type="button" class="btn btn-success w-100 mt-2 mb-4" (click)="openModal(coursesModalTemplate)">Dodaj Przedmiot</button>
-  <button *ngFor="let course of courses" type="button" class="btn btn-info w-100 my-2">{{course.name}}</button>
+<div class="col-sm h-100">
+  <div class="d-flex flex-column text-center h-100">
+    <div style="margin-right: 17px;">
+      <h1>Lista przedmiotów</h1>
+      <button type="button" class="btn btn-success w-50 mt-2 mb-4" (click)="openModal(coursesModalTemplate)">Dodaj Przedmiot</button>
+    </div>
+    <div class="d-flex flex-column align-items-center" style="overflow-y: scroll;">
+      <button *ngFor="let course of courses" type="button" class="btn btn-info w-50 my-2">{{course.name}}</button>
+    </div>
+  </div>
 </div>
 
 <ng-template #coursesModalTemplate>
@@ -12,8 +18,10 @@
     </button>
   </div>
   <div class="modal-body">
-    <input [(ngModel)]="newCourseProps.name" type="text" class="form-control my-3" placeholder="Nazwa przedmiotu" aria-label="New course name">
-    <p *ngIf="newCourseProps.wasCourseAdditionAttempted" class={{newCourseProps.msgStyle}}>{{newCourseProps.msgText}}</p>
+    <input [(ngModel)]="newCourseProps.name" type="text" class="form-control my-3" placeholder="Nazwa przedmiotu"
+      aria-label="New course name">
+    <p *ngIf="newCourseProps.wasCourseAdditionAttempted" class={{newCourseProps.msgStyle}}>{{newCourseProps.msgText}}
+    </p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="hideModal()" data-dismiss="modal">Anuluj</button>
