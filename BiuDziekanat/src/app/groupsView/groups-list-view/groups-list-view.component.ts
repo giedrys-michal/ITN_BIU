@@ -63,7 +63,7 @@ export class GroupsListViewComponent implements OnInit {
 
     this.groupService.setGroupStudents(groupStudents);
     this.studentService.setStudentAvailableGroups();
-    
+
     console.log("Group added: "+ name);
   }
 
@@ -99,5 +99,4 @@ export class GroupsListViewComponent implements OnInit {
   ngOnInit(): void {
     this.groups = this.mss.getGroups();
   }
-
 }

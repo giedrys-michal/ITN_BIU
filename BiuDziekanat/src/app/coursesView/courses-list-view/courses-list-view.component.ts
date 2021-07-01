@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { CourseService } from '../../services/course.service';
-import { Course } from '../../models/course';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/models/course';
+import { MainStateService } from 'src/app/services/main-state.service';
 
 @Component({
   selector: 'app-courses-list-view',
@@ -18,11 +19,6 @@ export class CoursesListViewComponent implements OnInit {
     msgStyle: "",
     msgText: "",
     wasCourseAdditionAttempted: false,
-  }
-
-  constructor(private modalService: BsModalService, private courseService: CourseService) {
-    this.courses = courseService.getCourses();
-    this.modalRef = new BsModalRef();
   }
 
   openModal(template: TemplateRef<any>) {
@@ -78,8 +74,22 @@ export class CoursesListViewComponent implements OnInit {
     return isCourseOnList;
   }
 
+  onCourseClick(course: Course): void {
+    this.mss.setCurrentCourse(course);
+    let courseGroups = this.courseService.findCourseGroups();
+    this.courseService.setCourseGroups(courseGroups);
+  }
+
+  constructor(
+    private modalService: BsModalService,
+    private mss: MainStateService,
+    private courseService: CourseService
+  ) {
+    this.courses = courseService.getCourses();
+    this.modalRef = new BsModalRef();
+  }
+
   ngOnInit(): void {
     this.courses = this.courseService.getCourses();
   }
-
 }

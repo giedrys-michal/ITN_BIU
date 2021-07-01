@@ -1,1 +1,14 @@
-<p>course-details-view works!</p>
+<div class="col-sm h-100">
+  <div class="d-flex flex-column h-100">
+
+    <div class="d-flex flex-column">
+      <h1 class="align-self-center">{{getCurrentCourse().name}}</h1>
+      <h2 class="w-100 my-3">Grupy:</h2>
+    </div>
+
+    <div class="flex-grow-1" style="overflow-y: scroll;">
+      <button *ngFor="let group of getCourseGroups()" type="button" class="btn btn-secondary m-2">{{group.name}}</button>
+    </div>
+
+  </div>
+</div>

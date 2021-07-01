@@ -61,13 +61,13 @@ export class GroupDetailsViewComponent implements OnInit {
 
   // GROUP STUDENTS
   private _groupStudents: Student[] = [];
+  
+  getGroupStudents(): Student[] {
+    return this._groupStudents;
+  }
 
   setGroupStudents(students: Student[]): void {
     this._groupStudents = students;
-  }
-
-  getGroupStudents(): Student[] {
-    return this._groupStudents;
   }
 
   // MODAL METHODS

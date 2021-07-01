@@ -5,11 +5,35 @@ import { Student } from 'src/app/models/student';
 import { STUDENTS } from 'src/app/models/mock-students';
 import { Group } from 'src/app/models/group';
 import { GROUPS } from 'src/app/models/mock-groups';
+import { Course } from 'src/app/models/course';
+import { COURSES } from 'src/app/models/mock-courses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainStateService {
+  // COURSES
+  private _courses = new BehaviorSubject<Array<Course>>(COURSES);
+  courses = this._courses.asObservable();
+
+  getCourses(): Course[] {
+    return this._courses.value;
+  }
+  setCourses(courses: Course[]): void {
+    this._courses.next(courses);
+  }
+
+  // CURRENT COURSE
+  private _currentCourse = new BehaviorSubject<Course>(this.getCourses()[0]);
+  currentCourse = this._currentCourse.asObservable();
+
+  getCurrentCourse(): Course {
+    return this._currentCourse.value;
+  }
+  setCurrentCourse(course: Course) {
+    this._currentCourse.next(course);
+  }
+
   // GROUPS
   private _groups = new BehaviorSubject<Array<Group>>(GROUPS);
   groups = this._groups.asObservable();
@@ -17,7 +41,7 @@ export class MainStateService {
   getGroups(): Group[] {
     return this._groups.value;
   }
-  setGroups(groups: Group[]) {
+  setGroups(groups: Group[]): void {
     this._groups.next(groups);
   }
 
@@ -31,7 +55,6 @@ export class MainStateService {
   setCurrentGroup(group: Group) {
     this._currentGroup.next(group);
   }
-
 
   // STUDENTS
   private _students = new BehaviorSubject<Array<Student>>(STUDENTS);
