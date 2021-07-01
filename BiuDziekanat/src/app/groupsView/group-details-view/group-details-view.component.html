@@ -1,13 +1,20 @@
-<div class="col-12 d-flex justify-content-center">
-  <h1>{{getCurrentGroup().name}}</h1>
-</div>
-<div class="col-12 d-flex align-items-center">
-  <h4 class="d-inline-block my-2" style="line-height: 1;">Dodaj studenta</h4>
-  <button type="button" class="btn btn-sm btn-success m-2" (click)="openModal(addStudentModalTemplate)">Dodaj</button>
-</div>
-<div class="col-12">
-  <h2 class="w-100 my-3">Studenci:</h2>
-  <button *ngFor="let student of getGroupStudents()" type="button" class="btn btn-warning m-2" >{{student.id}}<br>{{student.name}} {{student.lastName}}</button>
+<div class="col-sm h-100">
+  <div class="d-flex flex-column h-100">
+
+    <div class="d-flex flex-column">
+      <h1 class="align-self-center">{{getCurrentGroup().name}}</h1>
+      <div class="d-flex">
+        <h4 class="d-inline-block my-2" style="line-height: 1;">Dodaj studenta</h4>
+        <button type="button" class="btn btn-sm btn-success m-2" (click)="openModal(addStudentModalTemplate)">Dodaj</button>
+      </div>
+      <h2 class="w-100 my-3">Studenci:</h2>
+    </div>
+
+    <div class="flex-grow-1" style="overflow-y: scroll;">
+      <button *ngFor="let student of getGroupStudents()" type="button" class="btn btn-warning m-2" >{{student.id}}<br>{{student.name}} {{student.lastName}}</button>
+    </div>
+
+  </div>
 </div>
 
 <ng-template #addStudentModalTemplate>
