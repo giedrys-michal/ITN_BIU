@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Student } from 'src/app/models/student';
 import { STUDENTS } from 'src/app/models/mock-students';
 import { Group } from 'src/app/models/group';
-import { GroupService } from 'src/app/services/group.service';
 import { MainStateService } from './main-state.service';
 import { Course } from '../models/course';
 
@@ -50,7 +49,6 @@ export class StudentService {
   getCurrentStudent(): Student {
     return this._currentStudent.value;
   }
-
   setCurrentStudent(student: Student): void {
     this._currentStudent.next(student);
     this.findStudentCourses();
@@ -69,7 +67,6 @@ export class StudentService {
   getStudentGroups(): Group[] {
     return this._currentStudent.value.groups;
   }
-
   setStudentGroups(groups: Group[]): void {
     groups.sort((a, b) => a.id - b.id);
     this._currentStudent.value.groups = groups;
@@ -78,7 +75,6 @@ export class StudentService {
   getStudentAvailableGroups(): Array<Group> {
     return this._studentGroups.value;
   }
-
   setStudentAvailableGroups(): void {
     let remainder: Group[] = [];
 

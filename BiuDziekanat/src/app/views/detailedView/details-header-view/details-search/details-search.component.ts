@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { MainStateService } from 'src/app/services/main-state.service';
-import { StudentService } from '../../../../services/student.service';
 
 @Component({
   selector: 'app-details-search',
@@ -42,7 +41,6 @@ export class DetailsSearchComponent implements OnInit {
   }
 
   onStudentSelect(event: Event, student: Student): void {
-    console.log(student);
     let el = event.target as HTMLElement;
     this.searchInputText = el.innerHTML;
     this.mss.setCurrentStudent(student);
@@ -52,6 +50,7 @@ export class DetailsSearchComponent implements OnInit {
     this.shouldShowSuggestions(true);
     let filter = this.isIdFilterChecked;
     let tempList: Student[] = [];
+
     if (filter === "true") {
       for (let student of this.getStudents()) {
         if (student.id.toString().startsWith(value.toString()))
@@ -70,11 +69,12 @@ export class DetailsSearchComponent implements OnInit {
         }          
       }
     }
+
     tempList = tempList.slice(0, 5);
     tempList = tempList.filter((el) => {
       return el != null;
     })
-    console.log(tempList);
+
     this.setStudentsFilteredSearchList(tempList);
   }
 
@@ -101,6 +101,5 @@ export class DetailsSearchComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {  }
-
+  ngOnInit(): void { }
 }

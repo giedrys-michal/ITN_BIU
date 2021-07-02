@@ -59,5 +59,5 @@ export class DetailsCoursesViewComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

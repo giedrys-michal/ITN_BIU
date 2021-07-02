@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Group } from 'src/app/models/group';
 import { Student } from 'src/app/models/student';
-import { GroupService } from 'src/app/services/group.service';
 import { MainStateService } from 'src/app/services/main-state.service';
-import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-details-groups-view',

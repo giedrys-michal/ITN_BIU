@@ -64,7 +64,6 @@ export class StudentsListViewComponent implements OnInit {
       groups: []
     }
     this.studentService.addStudent(newStudent);
-    console.log("Student added: "+ name + " " + lastName);
   }
 
   isStudentLastNameCorrect(lastName: string): boolean {
@@ -72,7 +71,6 @@ export class StudentsListViewComponent implements OnInit {
   }
 
   onListButtonClick(student: Student): void {
-    console.log("Clicked on: " + student.id);
     this.studentService.setCurrentStudent(student);
     this.studentService.setStudentAvailableGroups();
   }
@@ -80,5 +78,4 @@ export class StudentsListViewComponent implements OnInit {
   ngOnInit(): void {
     this.students = this.studentService.getStudents();
   }
-
 }

@@ -15,7 +15,6 @@ export class CourseService {
   getCourses(): Course[] {
     return this._courses;
   }
-
   setCourses(courses: Course[]) {
     this._courses = courses;
   }
@@ -27,7 +26,6 @@ export class CourseService {
   getCurrentCourse(): Course {
     return this._currentCourse.value;
   }
-
   setCurrentCourse(course: Course): void {
     this._currentCourse.next(course);
   }
@@ -58,40 +56,47 @@ export class CourseService {
   findCourseGroups(): Group[] {
     let groups: Group[] = [];
     let groupsWithCourses = this.getGroupsWithCourses(this.mss.getGroups());
+
     groupsWithCourses.forEach(g => {
       let wasCourseFound = this.getCourseByName(g.courses, this.getCurrentCourse().name);
       if (wasCourseFound) {
         groups.push(g);
       }      
     });
+
     return groups;
   }
 
   getGroupsWithCourses(groups: Group[]): Group[] {
     let groupsWithCourses: Group[] = [];
+
     groups.forEach(g => {
       if (g.courses.length > 0) {
         groupsWithCourses.push(g);
       }
+
       return;
     });
+
     return groupsWithCourses;
   }
 
   getCourseByName(courses: Course[], name: string): boolean {
     let found = false;
+
     courses.forEach(c => {
       if (c.name === name) {
         found = true;
       }
     });
+
     return found;
   }
 
   constructor(private mss: MainStateService) {
     this.mss.courses.subscribe(result => {
       this._courses = result;
-    })
+    });
     this.mss.currentCourse.subscribe(result => {
       this.setCurrentCourse(result);
     });

@@ -19,7 +19,7 @@ export class CoursesListViewComponent implements OnInit {
     msgStyle: "",
     msgText: "",
     wasCourseAdditionAttempted: false,
-  }
+  };
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -67,10 +67,12 @@ export class CoursesListViewComponent implements OnInit {
 
   isCourseOnList(name: string): boolean {
     let isCourseOnList: boolean = false;
+    
     this.courses.forEach(c => {
       if (c.name === name)
         isCourseOnList = true;
     });
+
     return isCourseOnList;
   }
 

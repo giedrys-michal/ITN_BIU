@@ -3,7 +3,6 @@ import { Course } from 'src/app/models/course';
 
 import { Group } from 'src/app/models/group';
 import { CourseService } from 'src/app/services/course.service';
-import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-course-details-view',

@@ -17,7 +17,7 @@ let generateMockGroups = (names: string[], courses: Course[]) => {
 
     result.push(group);
   }
-  
+
   return result;
 }
 

@@ -64,7 +64,6 @@ export class GroupDetailsViewComponent implements OnInit {
   getGroupStudents(): Student[] {
     return this._groupStudents;
   }
-
   setGroupStudents(students: Student[]): void {
     this._groupStudents = students;
   }
@@ -81,6 +80,7 @@ export class GroupDetailsViewComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  // STUDENT METHODS
   onAddStudent(studentToAdd: Student): void {
     let studentGroups = studentToAdd.groups;
     let currentGroup = this.getCurrentGroup();

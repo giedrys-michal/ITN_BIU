@@ -21,7 +21,6 @@ export class StudentDetailsViewComponent implements OnInit {
     let newId = group.id;
 
     if (allGroups.length > 0) {
-
       for (let i = 0; i < allGroups.length; i++) {
         let currentId = allGroups[i].id;
 
@@ -66,5 +65,4 @@ export class StudentDetailsViewComponent implements OnInit {
   ngOnInit(): void {
     this.students = this.studentService.getStudents();
   }
-
 }

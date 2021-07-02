@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 import { Student } from 'src/app/models/student';
 import { MainStateService } from 'src/app/services/main-state.service';
-import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-details-header-view',
@@ -38,7 +36,5 @@ export class DetailsHeaderViewComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 }

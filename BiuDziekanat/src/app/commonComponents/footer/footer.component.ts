@@ -24,10 +24,8 @@ export class FooterComponent implements OnInit {
 
   constructor() {
     this._authorId = "s13406";
-    this._authorName = "Michał Giedryś"
+    this._authorName = "Michał Giedryś";
    }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

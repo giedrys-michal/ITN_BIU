@@ -16,7 +16,6 @@ export class GroupService {
   getStudents(): Student[] {
     return this._students;
   }
-
   setStudents(students: Student[]): void {
     this._students = students;
   }
@@ -27,7 +26,6 @@ export class GroupService {
   getGroups(): Group[] {
     return this._groups;
   }
-
   setGroups(groups: Group[]): void {
     this._groups = groups;
   }
@@ -39,7 +37,6 @@ export class GroupService {
   getCurrentGroup(): Group {
     return this._currentGroup.value;
   }
-
   setCurrentGroup(group: Group): void {
     this._currentGroup.next(group);
   }
@@ -56,7 +53,6 @@ export class GroupService {
   getGroupStudents(): Student[] {
     return this._groupStudents.value;
   }
-
   setGroupStudents(students: Student[]): void {
     this._groupStudents.next(students);
   }
@@ -114,6 +110,6 @@ export class GroupService {
     });
     this.mss.students.subscribe(result => {
       this.setStudents(result);
-    })
+    });
    }
 }

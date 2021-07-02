@@ -9,7 +9,5 @@ export class CoursesMainViewComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

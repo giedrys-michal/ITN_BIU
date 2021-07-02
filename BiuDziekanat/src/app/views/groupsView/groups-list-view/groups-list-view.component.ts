@@ -38,7 +38,6 @@ export class GroupsListViewComponent implements OnInit {
     
     if (this.isGroupNameCorrect(name)) {
       if (this.isGroupOnList(name)) {
-        console.log("Group already exists, select different name!");
         this.newGroupProps.msgStyle = "text-danger";
         this.newGroupProps.msgText = "Grupa o takiej nazwie już istnieje, proszę podać inną...";
       } else {
@@ -54,7 +53,7 @@ export class GroupsListViewComponent implements OnInit {
 
   addNewGroup(name: string) {
     let lastGroupId = this.groups[this.groups.length - 1].id;
-    let newGroup: Group = { id: lastGroupId + 1, name: name, courses: [] }
+    let newGroup: Group = { id: lastGroupId + 1, name: name, courses: [] };
 
     this.groupService.addGroup(newGroup);
     this.mss.setCurrentGroup(newGroup);
@@ -63,8 +62,6 @@ export class GroupsListViewComponent implements OnInit {
 
     this.groupService.setGroupStudents(groupStudents);
     this.studentService.setStudentAvailableGroups();
-
-    console.log("Group added: "+ name);
   }
 
   isGroupNameCorrect(name: string): boolean {
@@ -73,10 +70,12 @@ export class GroupsListViewComponent implements OnInit {
 
   isGroupOnList(name: string): boolean {
     let isGroupOnList: boolean = false;
+
     this.groups.forEach(g => {
       if (g.name === name)
         isGroupOnList = true;
     });
+    
     return isGroupOnList;
   }
 
