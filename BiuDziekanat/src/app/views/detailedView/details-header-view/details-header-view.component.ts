@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { Student } from 'src/app/models/student';
+import { MainStateService } from 'src/app/services/main-state.service';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -30,8 +31,9 @@ export class DetailsHeaderViewComponent implements OnInit {
     this._currentStudent = student;
   }
 
-  constructor(private studentService: StudentService) {
-    this.studentService.currentStudent.subscribe(result => {
+  constructor(
+    private mss: MainStateService) {
+    this.mss.currentStudent.subscribe(result => {
       this.setCurrentStudent(result);
     });
   }

@@ -73,7 +73,7 @@ export class StudentsListViewComponent implements OnInit {
 
   onListButtonClick(student: Student): void {
     console.log("Clicked on: " + student.id);
-    this.studentService.setStudent(student);
+    this.studentService.setCurrentStudent(student);
     this.studentService.setStudentAvailableGroups();
   }
 

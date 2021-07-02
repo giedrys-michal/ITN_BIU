@@ -1,4 +1,4 @@
-<h2>Search student</h2>
+<h2>Wyszukaj</h2>
 <div class="my-2">
   <div class="form-check form-check-inline">
     <input [(ngModel)]="isIdFilterChecked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true">
@@ -6,19 +6,19 @@
   </div>
   <div class="form-check form-check-inline">
     <input [(ngModel)]="isIdFilterChecked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
-    <label class="form-check-label" for="inlineRadio2">Last name</label>
+    <label class="form-check-label" for="inlineRadio2">Nazwisko</label>
   </div>
 </div>
 <div class="position-relative my-2">
-  <input [(ngModel)]="studentSearch" (ngModelChange)="onSearchInput($event)" (blur)="onBlur($event)" (focus)="onFocus($event)" type="text" id="search" class="form-control suggestionItem" placeholder="ID or Last name" aria-label="Search for student">
-  <div *ngIf="showSearchSuggestions" id="suggestionsList">
+  <input [(ngModel)]="searchInputText" type="text" id="search" class="form-control suggestionItem"  (ngModelChange)="onSearchInput($event)" (blur)="onBlur($event)" (focus)="onFocus($event)" placeholder="ID lub nazwisko" aria-label="Search for student">
+  <div *ngIf="areSuggestionsVisible()" id="suggestionsList">
     <div class="position-absolute w-100" style="top: 100%">
       <div *ngIf="isIdFilterChecked == 'true'; then filterId else filterLastName" class="list-group"></div>
       <ng-template #filterId>
-        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect($event, student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.id}}</button>
+        <button *ngFor="let student of getStudentsFilteredSearchList()" type="button" class="list-group-item list-group-item-action suggestionItem" (click)="onStudentSelect($event, student)">{{student.id}}</button>
       </ng-template>
       <ng-template #filterLastName>
-        <button *ngFor="let student of studentsFilteredSearchList" (click)="onStudentSelect($event, student)" type="button" class="list-group-item list-group-item-action suggestionItem">{{student.lastName}}</button>
+        <button *ngFor="let student of getStudentsFilteredSearchList()" type="button" class="list-group-item list-group-item-action suggestionItem" (click)="onStudentSelect($event, student)">{{student.lastName}}</button>
       </ng-template>
     </div>
   </div>

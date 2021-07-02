@@ -25,7 +25,8 @@ let generateCourses = (courses: Course[]) => {
   let result: Course[] = [];
 
   // get random course count - random from 1 to (courses.length - 1)
-  let upperCourseRangeBoundary = 1 + Math.floor( Math.random() * (courses.length - 1) );
+  // let upperCourseRangeBoundary = 1 + Math.floor( Math.random() * (courses.length - 1) );
+  let upperCourseRangeBoundary = 5;
 
   for (let i = 0; i < upperCourseRangeBoundary; i++) {
     let randomGroupIndex = Math.floor( Math.random() * courses.length );

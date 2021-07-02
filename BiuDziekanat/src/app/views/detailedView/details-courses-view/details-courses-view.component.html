@@ -1,14 +1,4 @@
-<h3>Courses</h3>
+<h3>Przedmioty</h3>
 <div class="col-12 d-flex flex-wrap justify-content-between">
-  <button type="button" class="btn btn-info mx-2 mt-4">Secondary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">egsdfs</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Secodsffdafasndary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Secondary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Seconsdfsdary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Secondary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Seconsdfsddary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Seconewedary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Sedary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Secosdfsdfsndary</button>
-  <button type="button" class="btn btn-info mx-2 mt-4">Secondary</button>
+  <button *ngFor="let course of getStudentCourses()" (click)="onCourseClick(course)" type="button" class="btn btn-info mx-2 mt-4">{{course.name}}</button>
 </div>

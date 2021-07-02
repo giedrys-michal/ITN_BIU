@@ -32,7 +32,6 @@ export class GroupDetailsViewComponent implements OnInit {
   }
 
   updateAvailableStudents(): void {
-    console.log("GroupDetails-updateAvailableStudents");
     let availableStudents = this.getStudents().slice();
     let groupStudents = this.getGroupStudents().slice();
 
@@ -75,6 +74,7 @@ export class GroupDetailsViewComponent implements OnInit {
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
+    this.updateAvailableStudents();
   }
 
   hideModal(): void {
@@ -85,15 +85,10 @@ export class GroupDetailsViewComponent implements OnInit {
     let studentGroups = studentToAdd.groups;
     let currentGroup = this.getCurrentGroup();
 
-    console.log(studentGroups);
-
     if (studentGroups.indexOf(currentGroup) == -1) {
-      console.log("Group not found, adding");
       studentGroups.push(currentGroup);
-    } else {
-      console.log("Group found");
     }
-    console.log(studentGroups);
+
     this.setGroupStudents(this.groupService.findGroupStudents());
     this.updateAvailableStudents();
   }

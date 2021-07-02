@@ -6,16 +6,30 @@ import { STUDENTS } from 'src/app/models/mock-students';
 import { Group } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
 import { MainStateService } from './main-state.service';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
+  // COURSES
+  private _courses: Course[] = [];
+
+  getCourses(): Course[] {
+    return this._courses;
+  }
+  setCourses(courses: Course[]): void {
+    this._courses = courses;
+  }
+
   // GROUPS
   private _groups: Group[] = [];
 
-  public get groups(): Group[] {
+  getGroups(): Group[] {
     return this._groups;
+  }
+  setGroups(groups: Group[]): void {
+    this._groups = groups;
   }
 
   // STUDENTS
@@ -33,17 +47,18 @@ export class StudentService {
   private _currentStudent = new BehaviorSubject<Student>(this.getStudents()[0]);
   currentStudent = this._currentStudent.asObservable();
 
-  getStudent(): Student {
+  getCurrentStudent(): Student {
     return this._currentStudent.value;
   }
 
-  setStudent(student: Student): void {
+  setCurrentStudent(student: Student): void {
     this._currentStudent.next(student);
+    this.findStudentCourses();
   }
 
   addStudent(student: Student): void {
-    this.setStudent(student);
-    this.getStudents().push(this.getStudent());
+    this.setCurrentStudent(student);
+    this.getStudents().push(this.getCurrentStudent());
     this.setStudentAvailableGroups();
   }
 
@@ -67,7 +82,7 @@ export class StudentService {
   setStudentAvailableGroups(): void {
     let remainder: Group[] = [];
 
-    this.groups.forEach(g => {
+    this.getGroups().forEach(g => {
       let found = false;
       this.getStudentGroups().forEach(sg => {
         if (g.id == sg.id) {
@@ -82,8 +97,43 @@ export class StudentService {
     this._studentGroups.next(remainder);
   }
 
-  constructor(private mss: MainStateService) {
-    this._groups = this.mss.getGroups();
+  // STUDENT COURSES
+  private _studentCourses = new BehaviorSubject<Array<Course>>(this.getCourses());
+  studentCourses = this._studentCourses.asObservable();
+
+  getStudentCourses(): Course[] {
+    return this._studentCourses.value;
+  }
+  setStudentCourses(courses: Course[]) {
+    this._studentCourses.next(courses);
+  }
+
+  findStudentCourses(): void {
+    let studentCourses: Course[] = [];
+    let groups: Group[] = this.getStudentGroups();
+
+    for (let group of groups) {
+      studentCourses = studentCourses.concat(group.courses);
+    }
+    
+    let uniqueCourses: Course[] = [...new Set(studentCourses)];
+    this.setStudentCourses(uniqueCourses.sort((a, b) => a.id - b.id));
+  }
+
+  constructor(
+    private mss: MainStateService,
+  ) {
+    this.mss.currentStudent.subscribe(result => {
+      this.setCurrentStudent(result);
+    });
+    this.mss.groups.subscribe(result => {
+      this.setGroups(result);
+    });
+    this.mss.courses.subscribe(result => {
+      this.setCourses(result);
+    });
+
     this.setStudentAvailableGroups();
+    this.findStudentCourses();
   }
 }
