@@ -1,8 +1,8 @@
 <div class="row border-bottom py-2">
   <div class="col-2"></div>
   <div class="col-8 d-flex flex-column align-items-center">
-    <h1>{{currentStudent.id}}</h1>
-    <h2><span>{{currentStudent.name}} {{currentStudent.lastName}}</span></h2>
+    <h1>{{getCurrentStudent().id}}</h1>
+    <h2><span>{{getCurrentStudent().name}} {{getCurrentStudent().lastName}}</span></h2>
   </div>
   <div class="col-2 d-flex justify-content-center">
     <app-details-search class="d-flex flex-column align-items-center"></app-details-search>

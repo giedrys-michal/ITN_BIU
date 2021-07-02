@@ -9,23 +9,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './commonComponents/nav/nav.component';
 import { FooterComponent } from './commonComponents/footer/footer.component';
-import { MainViewComponent } from './commonComponents/main-view/main-view.component';
-import { DetailsMainViewComponent } from './detailedView/details-main-view/details-main-view.component';
-import { DetailsGroupsViewComponent } from './detailedView/details-groups-view/details-groups-view.component';
-import { DetailsCoursesViewComponent } from './detailedView/details-courses-view/details-courses-view.component';
-import { DetailsSearchComponent } from './detailedView/details-main-view/details-search/details-search.component';
-import { GroupsMainViewComponent } from './groupsView/groups-main-view/groups-main-view.component';
-import { StudentsMainViewComponent } from './studentsView/students-main-view/students-main-view.component';
-import { CoursesMainViewComponent } from './coursesView/courses-main-view/courses-main-view.component';
-import { GroupsListViewComponent } from './groupsView/groups-list-view/groups-list-view.component';
-import { GroupDetailsViewComponent } from './groupsView/group-details-view/group-details-view.component';
-import { CoursesListViewComponent } from './coursesView/courses-list-view/courses-list-view.component';
-import { CourseDetailsViewComponent } from './coursesView/course-details-view/course-details-view.component';
-import { StudentDetailsViewComponent } from './studentsView/student-details-view/student-details-view.component';
-import { StudentsListViewComponent } from './studentsView/students-list-view/students-list-view.component';
+import { DetailsContainerViewComponent } from './views/detailedView/details-container-view/details-container-view.component';
+import { DetailsHeaderViewComponent } from './views/detailedView/details-header-view/details-header-view.component';
+import { DetailsGroupsViewComponent } from './views/detailedView/details-groups-view/details-groups-view.component';
+import { DetailsCoursesViewComponent } from './views/detailedView/details-courses-view/details-courses-view.component';
+import { DetailsSearchComponent } from './views/detailedView/details-header-view/details-search/details-search.component';
+import { GroupsMainViewComponent } from './views/groupsView/groups-main-view/groups-main-view.component';
+import { StudentsMainViewComponent } from './views/studentsView/students-main-view/students-main-view.component';
+import { CoursesMainViewComponent } from './views/coursesView/courses-main-view/courses-main-view.component';
+import { GroupsListViewComponent } from './views/groupsView/groups-list-view/groups-list-view.component';
+import { GroupDetailsViewComponent } from './views/groupsView/group-details-view/group-details-view.component';
+import { CoursesListViewComponent } from './views/coursesView/courses-list-view/courses-list-view.component';
+import { CourseDetailsViewComponent } from './views/coursesView/course-details-view/course-details-view.component';
+import { StudentDetailsViewComponent } from './views/studentsView/student-details-view/student-details-view.component';
+import { StudentsListViewComponent } from './views/studentsView/students-list-view/students-list-view.component';
 
 const appRoutes: Routes = [
-  { path: 'studentinfo', component: MainViewComponent },
+  { path: 'studentinfo', component: DetailsContainerViewComponent },
   { path: 'groups', component: GroupsMainViewComponent },
   { path: 'students', component: StudentsMainViewComponent },
   { path: 'courses', component: CoursesMainViewComponent },
@@ -38,8 +38,8 @@ const appRoutes: Routes = [
     AppComponent,
     NavComponent,
     FooterComponent,
-    MainViewComponent,
-    DetailsMainViewComponent,
+    DetailsContainerViewComponent,
+    DetailsHeaderViewComponent,
     DetailsGroupsViewComponent,
     DetailsCoursesViewComponent,
     DetailsSearchComponent,
